@@ -37,26 +37,26 @@ const Home: NextPage = () => {
 
   const prompt =
     vibe === "Quirky"
-      ? `Generate 2 quirky, playful, loving Valentine's Day messages with no hashtags and clearly labeled "1." and "2.". Make sure there is a cute joke in there and that it's a little ridiculous. This is a love letter to ${respondent} who is the sender's ${relation}. Emphasise on the love and come up with some fun ingredients. Make sure each generated message is at max 60 words and if there's some extra info that should be included, here it is: ${bio}. End the love letter in a funny way, from ${sender}${
+      ? `Generate 2 messages that's playful and offbeat, incorporating your own personal humor and quirks, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in a funny way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Enchanted"
-      ? `Generate 2 ${vibe} Valentine's Day messages with no hashtags and clearly labeled "1." and "2.". Make sure each generated message is at least 20 words and at max 100 words and base them on this context: ${bio}${
+      ? `Generate 2 messages in a fairy-tale like atmosphere, expressing the magic and enchantment you feel in your relationship, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an enchanted way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Adventurous"
-      ? `Generate 2 ${vibe} Valentine's Day messages with no hashtags and clearly labeled "1." and "2.". Make sure each generated message is at least 20 words and at max 100 words and base them on this context: ${bio}${
+      ? `Generate 2 messages that highlights the exciting journey and adventures you've shared together, and how much more there is to come, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an epic way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Cosmic"
-      ? `Generate 2 ${vibe} Valentine's Day messages with no hashtags and clearly labeled "1." and "2.". Make sure each generated message is at least 20 words and at max 100 words and base them on this context: ${bio}${
+      ? `Generate 2 messages that's out of this world, using celestial and cosmic language to express your love, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an crazy cosmic way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Dreamy"
-      ? `Generate 2 ${vibe} Valentine's Day messages with no hashtags and clearly labeled "1." and "2.". Make sure each generated message is at least 20 words and at max 100 words and base them on this context: ${bio}${
+      ? `Generate 2 messages that's dreamlike, expressing how your partner makes you feel as if you're living in a dream, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an dreamy way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`
-      : `Generate 2 ${vibe} Valentine's Day messages with no hashtags and clearly labeled "1." and "2.". Make sure each generated message is at least 20 words and at max 100 words and base them on this context: ${bio}${
+      : `Generate 2 messages where ${sender} expresses their love and affection for their ${relation} ${respondent}, with sweet and sentimental words, clearly labeled "1." and "2.". Make sure each generated message is at max 60 words and if there's some extra touch to, here it is: ${bio}. End the love letter in a romantic way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`;
 

@@ -11,9 +11,9 @@ function classNames(...classes: string[]) {
 }
 
 export type RelationType =
-  | "husband"
-  | "wife"
-  | "fiancée"
+  // | "husband"
+  // | "wife"
+  // | "fiancée"
   | "friend"
   | "lover"
   | "partner"
@@ -33,9 +33,9 @@ interface DropDownProps {
 }
 
 let relations: RelationType[] = [
-  "husband",
-  "wife",
-  "fiancée",
+  // "husband",
+  // "wife",
+  // "fiancée",
   "friend",
   "lover",
   "partner",
