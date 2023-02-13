@@ -23,18 +23,6 @@ const Home: NextPage = () => {
 
   console.log("Streamed response: ", generatedBios);
 
-  //   Quirky: Write a message that's playful and offbeat, incorporating your own personal humor and quirks.
-
-  // Enchanted: Create a fairy-tale like atmosphere, expressing the magic and enchantment you feel in your relationship.
-
-  // Adventure: Write a message that highlights the exciting journey and adventures you've shared together, and how much more there is to come.
-
-  // Cosmic: Write a message that's out of this world, using celestial and cosmic language to express your love.
-
-  // Dreamy: Write a message that's dreamlike, expressing how your partner makes you feel as if you're living in a dream.
-
-  // Romantic: Express your love and affection for your partner with sweet and sentimental words.
-
   const prompt =
     vibe === "Quirky"
       ? `Generate 2 messages that's playful and offbeat, incorporating your own personal humor and quirks, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in a funny way, from ${sender}${
@@ -52,11 +40,11 @@ const Home: NextPage = () => {
       ? `Generate 2 messages that's out of this world, using celestial and cosmic language to express your love, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an crazy cosmic way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`
-      : vibe === "Dreamy"
-      ? `Generate 2 messages that's dreamlike, expressing how your partner makes you feel as if you're living in a dream, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an dreamy way, from ${sender}${
-          bio.slice(-1) === "." ? "" : "."
-        }`
-      : `Generate 2 messages where ${sender} expresses their love and affection for their ${relation} ${respondent}, with sweet and sentimental words, clearly labeled "1." and "2.". Make sure each generated message is at max 60 words and if there's some extra touch to, here it is: ${bio}. End the love letter in a romantic way, from ${sender}${
+      : // : vibe === "Cool"
+        // ? `Generate 2 messages that's cool, edgy and spot on, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an cool and fun way, from ${sender}${
+        //     bio.slice(-1) === "." ? "" : "."
+        //   }`
+        `Generate 2 messages where ${sender} expresses their love and affection for their ${relation} ${respondent}, with sweet and sentimental words, clearly labeled "1." and "2.". Make sure each generated message is at max 60 words and if there's some extra touch to, here it is: ${bio}. End the love letter in a romantic way, from ${sender}${
           bio.slice(-1) === "." ? "" : "."
         }`;
 
@@ -107,20 +95,16 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20">
+      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20 bg-red-100">
         <h1 className="sm:text-6xl text-4xl max-w-2xl font-bold text-slate-900">
-          A love letter for your Valentine 💕
+          A love letter for your Valentine 🥰
         </h1>
         <p className="text-slate-500 mt-5">Generate one in seconds</p>
         <div className="max-w-xl w-full">
           <div className="flex mt-10 items-center space-x-3">
-            <Image
-              src="/1-black.png"
-              width={30}
-              height={30}
-              alt="1 icon"
-              className="mb-5 sm:mb-0"
-            />
+            <span role="img" aria-label="step 1">
+              💓
+            </span>
             <p className="text-left font-medium">Fill in some deets.</p>
           </div>
 
@@ -134,21 +118,13 @@ const Home: NextPage = () => {
             placeholder={"What's the name of your Valentine?"}
           />
 
-          <div className="block">
-            <DropDown2
-              relation={relation}
-              setRelation={(newRelation) => setRelation(newRelation)}
-            />
-          </div>
-
           <textarea
+            maxLength={200}
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            rows={4}
-            className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
-            placeholder={
-              "write a few sentences here that you think is important for this Valentine's card."
-            }
+            rows={3}
+            className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black mb-5"
+            placeholder={"Add a personal touch, if you want to"}
           />
 
           <input
@@ -161,7 +137,22 @@ const Home: NextPage = () => {
           />
 
           <div className="flex mb-5 items-center space-x-3">
-            <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
+            <span role="img" aria-label="step 2">
+              💕
+            </span>
+            <p className="text-left font-medium">Select relationship.</p>
+          </div>
+          <div className="block">
+            <DropDown2
+              relation={relation}
+              setRelation={(newRelation) => setRelation(newRelation)}
+            />
+          </div>
+
+          <div className="flex my-5 items-center space-x-3">
+            <span role="img" aria-label="step 3">
+              💗
+            </span>
             <p className="text-left font-medium">Select your vibe.</p>
           </div>
           <div className="block">

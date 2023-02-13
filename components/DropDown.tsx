@@ -15,7 +15,7 @@ export type VibeType =
   | "Enchanted"
   | "Adventurous"
   | "Cosmic"
-  | "Dreamy"
+  // | "Cool"
   | "Romantic";
 
 interface DropDownProps {
@@ -28,7 +28,7 @@ let vibes: VibeType[] = [
   "Enchanted",
   "Adventurous",
   "Cosmic",
-  "Dreamy",
+  // "Cool",
   "Romantic",
 ];
 
