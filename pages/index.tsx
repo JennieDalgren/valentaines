@@ -201,7 +201,10 @@ const Home: NextPage = () => {
                           <div
                             className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                             onClick={() => {
-                              navigator.clipboard.writeText(generatedBio);
+                              navigator.clipboard.writeText(
+                                generatedBio +
+                                  " ❤️ create your own at https://valentanies.day ❤️"
+                              );
                               toast("Love letter copied to clipboard", {
                                 icon: "✂️",
                               });
