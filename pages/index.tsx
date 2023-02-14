@@ -21,7 +21,7 @@ const Home: NextPage = () => {
   const [relation, setRelation] = useState<RelationType>("friend");
   const [generatedBios, setGeneratedBios] = useState<String>("");
 
-  console.log("Streamed response: ", generatedBios);
+  // console.log("Streamed response: ", generatedBios);
 
   const prompt =
     vibe === "Quirky"
@@ -219,6 +219,19 @@ const Home: NextPage = () => {
           </AnimatePresence>
         </ResizablePanel>
       </main>
+
+      <h2 className="text-2xl font-bold">
+        I'm also building{" "}
+        <a
+          className="text-red-600 text-underline"
+          href="https://bedtimestory.ai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bedtimestory.ai
+        </a>{" "}
+        - check it out 😘
+      </h2>
       <Footer />
     </div>
   );
