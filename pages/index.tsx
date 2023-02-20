@@ -1,56 +1,52 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import DropDown, { VibeType } from "../components/DropDown";
 import DropDown2, { RelationType } from "../components/DropDown2";
 import Footer from "../components/Footer";
-import Github from "../components/GitHub";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
 import ResizablePanel from "../components/ResizablePanel";
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
-  const [bio, setBio] = useState("");
+  const [msg, setMsg] = useState("");
   const [respondent, setRespondent] = useState("");
   const [sender, setSender] = useState("");
   const [vibe, setVibe] = useState<VibeType>("Quirky");
   const [relation, setRelation] = useState<RelationType>("friend");
-  const [generatedBios, setGeneratedBios] = useState<String>("");
-
-  // console.log("Streamed response: ", generatedBios);
+  const [generatedMsgs, setGeneratedMsgs] = useState<String>("");
 
   const prompt =
     vibe === "Quirky"
-      ? `Generate 2 messages that's playful and offbeat, incorporating your own personal humor and quirks, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in a funny way, from ${sender}${
-          bio.slice(-1) === "." ? "" : "."
+      ? `Generate 2 messages that's playful and offbeat, incorporating your own personal humor and quirks, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${msg}. End the love letter in a funny way, from ${sender}${
+          msg.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Enchanted"
-      ? `Generate 2 messages in a fairy-tale like atmosphere, expressing the magic and enchantment you feel in your relationship, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an enchanted way, from ${sender}${
-          bio.slice(-1) === "." ? "" : "."
+      ? `Generate 2 messages in a fairy-tale like atmosphere, expressing the magic and enchantment you feel in your relationship, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${msg}. End the love letter in an enchanted way, from ${sender}${
+          msg.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Adventurous"
-      ? `Generate 2 messages that highlights the exciting journey and adventures you've shared together, and how much more there is to come, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an epic way, from ${sender}${
-          bio.slice(-1) === "." ? "" : "."
+      ? `Generate 2 messages that highlights the exciting journey and adventures you've shared together, and how much more there is to come, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${msg}. End the love letter in an epic way, from ${sender}${
+          msg.slice(-1) === "." ? "" : "."
         }`
       : vibe === "Cosmic"
-      ? `Generate 2 messages that's out of this world, using celestial and cosmic language to express your love, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an crazy cosmic way, from ${sender}${
-          bio.slice(-1) === "." ? "" : "."
+      ? `Generate 2 messages that's out of this world, using celestial and cosmic language to express your love, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${msg}. End the love letter in an crazy cosmic way, from ${sender}${
+          msg.slice(-1) === "." ? "" : "."
         }`
       : // : vibe === "Cool"
         // ? `Generate 2 messages that's cool, edgy and spot on, clearly labeled "1." and "2.". A love letter to ${respondent}, include the name, who is the sender's ${relation}. Make sure each generated message is at max 60 words and if there's some extra info applied, here it is: ${bio}. End the love letter in an cool and fun way, from ${sender}${
         //     bio.slice(-1) === "." ? "" : "."
         //   }`
-        `Generate 2 messages where ${sender} expresses their love and affection for their ${relation} ${respondent}, with sweet and sentimental words, clearly labeled "1." and "2.". Make sure each generated message is at max 60 words and if there's some extra touch to, here it is: ${bio}. End the love letter in a romantic way, from ${sender}${
-          bio.slice(-1) === "." ? "" : "."
+        `Generate 2 messages where ${sender} expresses their love and affection for their ${relation} ${respondent}, with sweet and sentimental words, clearly labeled "1." and "2.". Make sure each generated message is at max 60 words and if there's some extra touch to, here it is: ${msg}. End the love letter in a romantic way, from ${sender}${
+          msg.slice(-1) === "." ? "" : "."
         }`;
 
-  const generateBio = async (e: any) => {
+  const generateMessage = async (e: any) => {
     e.preventDefault();
-    setGeneratedBios("");
+    setGeneratedMsgs("");
     setLoading(true);
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -81,7 +77,7 @@ const Home: NextPage = () => {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      setGeneratedBios((prev) => prev + chunkValue);
+      setGeneratedMsgs((prev) => prev + chunkValue);
     }
 
     setLoading(false);
@@ -120,8 +116,8 @@ const Home: NextPage = () => {
 
           <textarea
             maxLength={200}
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
+            value={msg}
+            onChange={(e) => setMsg(e.target.value)}
             rows={3}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black mb-5"
             placeholder={"Add a personal touch, if you want to"}
@@ -162,7 +158,7 @@ const Home: NextPage = () => {
           {!loading && (
             <button
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
-              onClick={(e) => generateBio(e)}
+              onClick={(e) => generateMessage(e)}
             >
               Generate your love letter &rarr;
             </button>
@@ -185,7 +181,7 @@ const Home: NextPage = () => {
         <ResizablePanel>
           <AnimatePresence mode="wait">
             <motion.div className="space-y-10 my-10">
-              {generatedBios && (
+              {generatedMsgs && (
                 <>
                   <div>
                     <h2 className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto">
@@ -193,25 +189,25 @@ const Home: NextPage = () => {
                     </h2>
                   </div>
                   <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-                    {generatedBios
-                      .substring(generatedBios.indexOf("1") + 3)
+                    {generatedMsgs
+                      .substring(generatedMsgs.indexOf("1") + 3)
                       .split("2.")
-                      .map((generatedBio) => {
+                      .map((generatedMess) => {
                         return (
                           <div
                             className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
                             onClick={() => {
                               navigator.clipboard.writeText(
-                                generatedBio +
+                                generatedMess +
                                   " ❤️ create your own at https://valentanies.day ❤️"
                               );
                               toast("Love letter copied to clipboard", {
                                 icon: "✂️",
                               });
                             }}
-                            key={generatedBio}
+                            key={generatedMess}
                           >
-                            <p>{generatedBio}</p>
+                            <p>{generatedMess}</p>
                           </div>
                         );
                       })}
